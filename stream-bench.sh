@@ -15,10 +15,10 @@ KAFKA_VERSION=${KAFKA_VERSION:-"1.1.0"}
 REDIS_VERSION=${REDIS_VERSION:-"4.0.9"}
 SCALA_BIN_VERSION=${SCALA_BIN_VERSION:-"2.11"}
 SCALA_SUB_VERSION=${SCALA_SUB_VERSION:-"4"}
-STORM_VERSION=${STORM_VERSION:-"0.9.7"}
-FLINK_VERSION=${FLINK_VERSION:-"1.1.3"}
+STORM_VERSION=${STORM_VERSION:-"1.2.1"}
+FLINK_VERSION=${FLINK_VERSION:-"1.3.3"}
 SPARK_VERSION=${SPARK_VERSION:-"2.2.0"}
-APEX_VERSION=${APEX_VERSION:-"3.4.0"}
+APEX_VERSION=${APEX_VERSION:-"3.6.0"}
 
 STORM_DIR="apache-storm-$STORM_VERSION"
 REDIS_DIR="redis-$REDIS_VERSION"
@@ -137,7 +137,7 @@ run() {
 	echo 'storm.ackers: 2' >> $CONF_FILE
 	echo 'spark.batchtime: 2000' >> $CONF_FILE
 	
-    $MVN clean install -Dspark.version="$SPARK_VERSION" -Dkafka.version="$KAFKA_VERSION" -Dflink.version="$FLINK_VERSION" -Dstorm.version="$STORM_VERSION" -Dscala.binary.version="$SCALA_BIN_VERSION" -Dscala.version="$SCALA_BIN_VERSION.$SCALA_SUB_VERSION" -Dapex.version="$APEX_VERSION"
+    $MVN clean install -DskipTests -Dspark.version="$SPARK_VERSION" -Dkafka.version="$KAFKA_VERSION" -Dflink.version="$FLINK_VERSION" -Dstorm.version="$STORM_VERSION" -Dscala.binary.version="$SCALA_BIN_VERSION" -Dscala.version="$SCALA_BIN_VERSION.$SCALA_SUB_VERSION" -Dapex.version="$APEX_VERSION"
 
     #Fetch and build Redis
     REDIS_FILE="$REDIS_DIR.tar.gz"
