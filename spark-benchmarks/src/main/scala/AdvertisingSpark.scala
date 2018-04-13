@@ -10,8 +10,6 @@ package spark.benchmark
 import java.util
 
 import org.apache.spark.streaming.{Milliseconds, StreamingContext}
-
-
 import org.apache.spark.streaming.kafka010.KafkaUtils
 import org.apache.spark.streaming.kafka010.LocationStrategies.PreferConsistent
 import org.apache.spark.streaming.kafka010.ConsumerStrategies.Subscribe
@@ -19,10 +17,14 @@ import org.apache.spark.SparkConf
 import org.json.JSONObject
 import org.sedis._
 import redis.clients.jedis._
+
 import scala.collection.Iterator
 import java.util.UUID
+
 import compat.Platform.currentTime
 import benchmark.common.Utils
+import org.apache.kafka.common.serialization.StringDeserializer
+
 import scala.collection.JavaConverters._
 
 object KafkaRedisAdvertisingStream {
@@ -59,7 +61,12 @@ object KafkaRedisAdvertisingStream {
     // Create direct kafka stream with brokers and topics
     val topicsSet = Set(topic)
     val brokers = joinHosts(kafkaHosts, kafkaPort)
-    val kafkaParams = Map[String, String]("metadata.broker.list" -> brokers, "auto.offset.reset" -> "earliest")
+    val kafkaParams = Map[String, Object](
+      "metadata.broker.list" -> brokers,
+      "auto.offset.reset" -> "earliest",
+      "key.deserializer" -> classOf[StringDeserializer],
+      "value.deserializer" -> classOf[StringDeserializer]
+    )
     System.err.println(
       "Trying to connect to Kafka at " + brokers)
     val messages = KafkaUtils.createDirectStream[String, String](
