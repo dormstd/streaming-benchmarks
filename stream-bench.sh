@@ -289,6 +289,7 @@ run() {
     run "START_REDIS"
     run "START_KAFKA"
     run "START_STORM"
+    sleep "10" #Give Storm time to star
     run "START_STORM_TOPOLOGY"
     run "START_LOAD"
     sleep $TEST_TIME
@@ -320,6 +321,7 @@ run() {
     run "START_REDIS"
     run "START_KAFKA"
     run "START_SPARK"
+    sleep "10" #Give Spark time to star
     run "START_SPARK_PROCESSING"
     run "START_LOAD"
     sleep $TEST_TIME
