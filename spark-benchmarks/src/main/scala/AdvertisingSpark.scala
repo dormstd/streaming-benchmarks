@@ -23,11 +23,12 @@ import java.util.UUID
 
 import compat.Platform.currentTime
 import benchmark.common.Utils
+import com.typesafe.scalalogging.LazyLogging
 import org.apache.kafka.common.serialization.StringDeserializer
 
 import scala.collection.JavaConverters._
 
-object KafkaRedisAdvertisingStream {
+object KafkaRedisAdvertisingStream extends LazyLogging{
   def main(args: Array[String]) {
 
     val commonConfig = Utils.findAndReadConfigFile(args(0), true).asInstanceOf[java.util.Map[String, Any]];
@@ -61,6 +62,8 @@ object KafkaRedisAdvertisingStream {
     // Create direct kafka stream with brokers and topics
     val topicsSet = Set(topic)
     val brokers = joinHosts(kafkaHosts, kafkaPort)
+
+    logger.error(brokers)
     val kafkaParams = Map[String, Object](
       "metadata.broker.list" -> brokers,
       "auto.offset.reset" -> "earliest",
