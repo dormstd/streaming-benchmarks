@@ -67,7 +67,7 @@ object KafkaRedisAdvertisingStream extends LazyLogging{
     val kafkaParams = Map[String, Object](
       "bootstrap.servers" -> brokers,
       "auto.offset.reset" -> "earliest",
-      "group-id" -> "yahoo_benchmark",
+      "group.id" -> "yahoo_benchmark",
       "key.deserializer" -> classOf[StringDeserializer],
       "value.deserializer" -> classOf[StringDeserializer]
     )
