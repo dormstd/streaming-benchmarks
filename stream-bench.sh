@@ -25,7 +25,7 @@ REDIS_DIR="redis-$REDIS_VERSION"
 KAFKA_DIR="kafka_$SCALA_BIN_VERSION-$KAFKA_VERSION"
 FLINK_DIR="flink-$FLINK_VERSION"
 SPARK_DIR="spark-$SPARK_VERSION-bin-hadoop2.7"
-APEX_DIR="apex-$APEX_VERSION"
+APEX_DIR="apache-apex-core-$APEX_VERSION"
 
 #Get one of the closet apache mirrors
 APACHE_MIRROR=$(curl 'https://www.apache.org/dyn/closer.cgi' |   grep -o '<strong>[^<]*</strong>' |   sed 's/<[^>]*>//g' |   head -1)
@@ -149,7 +149,7 @@ run() {
 
     #Fetch Apex
     APEX_FILE="$APEX_DIR.tgz.gz"
-    fetch_untar_file "$APEX_FILE" "$APACHE_MIRROR/apex/apache-apex-core-$APEX_VERSION/apex-$APEX_VERSION-source-release.tar.gz"
+    fetch_untar_file "$APEX_FILE" "$APACHE_MIRROR/apex/apache-apex-core-$APEX_VERSION/apache-apex-core-$APEX_VERSION-source-release.tar.gz"
     cd $APEX_DIR
     $MVN clean install -DskipTests
     cd ..
