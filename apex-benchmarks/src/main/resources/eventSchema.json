@@ -1,6 +1,6 @@
 {"keys":
   [
-    {"name":"campaignId","type":"string"},
+    {"name":"campaignId","type":"string"}
   ],
  "timeBuckets":["10s"],
  "values":

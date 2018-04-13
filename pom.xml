@@ -16,18 +16,18 @@ Licensed under the terms of the Apache License 2.0. Please see LICENSE file in t
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <spark.version>2.2.0</spark.version>
-        <kafka.version>0.8.2.1</kafka.version>
-        <flink.version>1.1.3</flink.version>
-        <storm.version>0.9.7</storm.version>
+        <kafka.version>1.1.0</kafka.version>
+        <flink.version>1.3.3</flink.version>
+        <storm.version>1.2.1</storm.version>
         <scala.binary.version>2.11</scala.binary.version>
         <scala.version>2.11.4</scala.version>
         <json.version>20140107</json.version>
         <jedis.version>2.4.2</jedis.version>
         <sedis.version>1.2.2</sedis.version>
-        <slf4j.version>1.7.7</slf4j.version>
+        <slf4j.version>1.7.25</slf4j.version>
         <commons-cli.version>1.3.1</commons-cli.version>
         <snakeyaml.version>1.11</snakeyaml.version>
-        <apex.version>3.4.0</apex.version>
+        <apex.version>3.6.0</apex.version>
     </properties>
     <dependencyManagement>
         <dependencies>
