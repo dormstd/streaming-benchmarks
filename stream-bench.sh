@@ -210,7 +210,7 @@ run() {
     rm -rf /tmp/kafka-logs/
   elif [ "START_FLINK" = "$OPERATION" ];
   then
-    start_if_needed org.apache.flink.runtime.jobmanager.JobManager Flink 1 $FLINK_DIR/bin/start-local.sh
+    start_if_needed org.apache.flink.runtime.jobmanager.JobManager Flink 4 $FLINK_DIR/bin/start-local.sh
   elif [ "STOP_FLINK" = "$OPERATION" ];
   then
     $FLINK_DIR/bin/stop-local.sh
@@ -304,6 +304,7 @@ run() {
     run "START_REDIS"
     run "START_KAFKA"
     run "START_FLINK"
+    sleep "10" #Give flink time to start
     run "START_FLINK_PROCESSING"
     run "START_LOAD"
     sleep $TEST_TIME
