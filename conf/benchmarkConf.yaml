@@ -14,7 +14,7 @@ kafka.topic: "ad-events"
 kafka.partitions: 1
 
 process.hosts: 1
-process.cores: 4
+process.cores: 1
 
 #STORM Specific
 storm.workers: 1
