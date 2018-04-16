@@ -48,8 +48,6 @@ public class AdvertisingTopologyNative {
         LOG.info("Parameters used: {}", flinkBenchmarkParams.toMap());
 
         StreamExecutionEnvironment env = StreamExecutionEnvironment.getExecutionEnvironment();
-        CheckpointConfig config = env.getCheckpointConfig();
-        config.enableExternalizedCheckpoints(CheckpointConfig.ExternalizedCheckpointCleanup.RETAIN_ON_CANCELLATION);
         env.getConfig().setGlobalJobParameters(flinkBenchmarkParams);
 
 		// Set the buffer timeout (default 100)
