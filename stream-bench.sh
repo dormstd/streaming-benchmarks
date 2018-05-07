@@ -356,6 +356,8 @@ run() {
     run "STOP_KAFKA"
     run "STOP_REDIS"
     run "STOP_ZK"
+    #Add an exit 0 to mark the exit as OK (some of the previous calls will just fail because there is nothing to stop...)
+    exit 0
   else
     if [ "HELP" != "$OPERATION" ];
     then
