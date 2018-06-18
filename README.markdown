@@ -21,7 +21,7 @@ It takes a list of operations to perform, and options are passed into the script
 
 #### Environment Variables
    * STORM_VERSION - the version of Storm to compile and run against (default 1.2.1)
-   * SPARK_VERSION - the version of Spark to compile and run against (default 2.2.0)
+   * SPARK_VERSION - the version of Spark to compile and run against (default 2.2.1)
    * FLINK_VERSION - the version of Flink to compile and run against (default 1.4.2)
    * APEX_VERSION - the version of Apex to compile and run against (default 3.4.0)
    * LOAD - the number of messages per second to send to be processed (default 1000)
