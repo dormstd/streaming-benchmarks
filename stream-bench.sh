@@ -311,6 +311,7 @@ run() {
     run "STOP_LOAD"
     run "STOP_STORM_TOPOLOGY"
     run "STOP_STORM"
+    run "STOP_REDIS"
   elif [ "FLINK_TEST" = "$OPERATION" ];
   then
     run "START_ZK"
@@ -324,6 +325,7 @@ run() {
     run "STOP_LOAD"
     run "STOP_FLINK_PROCESSING"
     run "STOP_FLINK"
+    run "STOP_REDIS"
   elif [ "SPARK_TEST" = "$OPERATION" ];
   then
     run "START_ZK"
@@ -337,6 +339,7 @@ run() {
     run "STOP_LOAD"
     run "STOP_SPARK_PROCESSING"
     run "STOP_SPARK"
+    run "STOP_REDIS"
  elif [ "APEX_TEST" = "$OPERATION" ];
   then
     run "START_ZK"
@@ -347,6 +350,7 @@ run() {
     sleep $TEST_TIME
     run "STOP_LOAD"
     run "STOP_APEX"
+    run "STOP_REDIS"
   elif [ "STOP_ALL" = "$OPERATION" ];
   then
     run "STOP_LOAD"
@@ -356,9 +360,9 @@ run() {
     run "STOP_FLINK"
     run "STOP_STORM_TOPOLOGY"
     run "STOP_STORM"
-    run "STOP_KAFKA"
+    #run "STOP_KAFKA"
     run "STOP_REDIS"
-    run "STOP_ZK"
+    #run "STOP_ZK"
     #Add an exit 0 to mark the exit as OK (some of the previous calls will just fail because there is nothing to stop...)
     exit 0
   else
