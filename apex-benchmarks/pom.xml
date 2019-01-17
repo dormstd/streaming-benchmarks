@@ -232,31 +232,6 @@
     </plugins>
 
   </build>
-
-  <repositories>
-    <repository>
-      <id>apache.snapshots</id>
-      <name>Apache Snapshot Repository</name>
-      <url>http://repository.apache.org/snapshots</url>
-    </repository>
-    <repository>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-      <id>Datatorrent-Releases</id>
-      <name>DataTorrent Release Repository</name>
-      <url>https://www.datatorrent.com/maven/content/repositories/releases/</url>
-    </repository>
-    <repository>
-      <releases>
-        <enabled>false</enabled>
-      </releases>
-      <id>DataTorrent-Snapshots</id>
-      <name>DataTorrent Early Access Program Snapshot Repository</name>
-      <url>https://www.datatorrent.com/maven/content/repositories/snapshots/</url>
-    </repository>
-  </repositories>
-
   <dependencies>
     <!-- add your dependencies here -->
     <dependency>
@@ -307,8 +282,8 @@
     </dependency>
     <dependency>
       <groupId>org.apache.kafka</groupId>
-      <artifactId>kafka_2.10</artifactId>
-      <version>0.8.1.1</version>
+      <artifactId>kafka_2.11</artifactId>
+      <version>1.1.0</version>
       <optional>true</optional>
       <exclusions>
         <exclusion>

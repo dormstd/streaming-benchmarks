@@ -28,7 +28,9 @@ SPARK_DIR="spark-$SPARK_VERSION-bin-hadoop2.7"
 APEX_DIR="apache-apex-core-$APEX_VERSION"
 
 #Get one of the closet apache mirrors
-APACHE_MIRROR=$(curl 'https://www.apache.org/dyn/closer.cgi' |   grep -o '<strong>[^<]*</strong>' |   sed 's/<[^>]*>//g' |   head -1)
+#APACHE_MIRROR=$(curl 'https://www.apache.org/dyn/closer.cgi' |   grep -o '<strong>[^<]*</strong>' |   sed 's/<[^>]*>//g' |   head -1)
+#Get the software from the apache archive
+APACHE_MIRROR="https://archive.apache.org/dist"
 
 ZK_HOST="localhost"
 ZK_PORT="2181"
@@ -179,6 +181,7 @@ run() {
     cd $REDIS_DIR
     $MAKE
     cd ..
+
   elif [ "COMPILE_BENCH" = "$OPERATION" ];
   then
     $MVN clean install -DskipTests -Dspark.version="$SPARK_VERSION" -Dkafka.version="$KAFKA_VERSION" -Dflink.version="$FLINK_VERSION" -Dstorm.version="$STORM_VERSION" -Dscala.binary.version="$SCALA_BIN_VERSION" -Dscala.version="$SCALA_BIN_VERSION.$SCALA_SUB_VERSION" -Dapex.version="$APEX_VERSION"
