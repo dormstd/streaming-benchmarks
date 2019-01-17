@@ -22,7 +22,7 @@ APEX_VERSION=${APEX_VERSION:-"3.6.0"}
 
 STORM_DIR="apache-storm-$STORM_VERSION"
 REDIS_DIR="redis-$REDIS_VERSION"
-KAFKA_DIR="kafka_$SCALA_BIN_VERSION-$KAFKA_VERSION"
+KAFKA_DIR=${KAFKA_DIR:-"kafka_$SCALA_BIN_VERSION-$KAFKA_VERSION"}
 FLINK_DIR="flink-$FLINK_VERSION"
 SPARK_DIR="spark-$SPARK_VERSION-bin-hadoop2.7"
 APEX_DIR="apache-apex-core-$APEX_VERSION"
@@ -42,7 +42,7 @@ CONF_FILE=./conf/localConf.yaml
 TEST_TIME=${TEST_TIME:-240}
 
 pid_match() {
-   local VAL=`ps -aef | grep "$1" | grep -v grep | awk '{print $2}'`
+   local VAL=`ps -aef | grep -i "$1" | grep -v grep | awk '{print $2}'`
    echo $VAL
 }
 
@@ -311,9 +311,6 @@ run() {
     run "STOP_LOAD"
     run "STOP_STORM_TOPOLOGY"
     run "STOP_STORM"
-    run "STOP_KAFKA"
-    run "STOP_REDIS"
-    run "STOP_ZK"
   elif [ "FLINK_TEST" = "$OPERATION" ];
   then
     run "START_ZK"
@@ -327,25 +324,19 @@ run() {
     run "STOP_LOAD"
     run "STOP_FLINK_PROCESSING"
     run "STOP_FLINK"
-    run "STOP_KAFKA"
-    run "STOP_REDIS"
-    run "STOP_ZK"
   elif [ "SPARK_TEST" = "$OPERATION" ];
   then
     run "START_ZK"
     run "START_REDIS"
     run "START_KAFKA"
     run "START_SPARK"
-    sleep "10" #Give Spark time to star
+    sleep "10" #Give Spark time to start
     run "START_SPARK_PROCESSING"
     run "START_LOAD"
     sleep $TEST_TIME
     run "STOP_LOAD"
     run "STOP_SPARK_PROCESSING"
     run "STOP_SPARK"
-    run "STOP_KAFKA"
-    run "STOP_REDIS"
-    run "STOP_ZK"
  elif [ "APEX_TEST" = "$OPERATION" ];
   then
     run "START_ZK"
@@ -356,9 +347,6 @@ run() {
     sleep $TEST_TIME
     run "STOP_LOAD"
     run "STOP_APEX"
-    run "STOP_KAFKA"
-    run "STOP_REDIS"
-    run "STOP_ZK"
   elif [ "STOP_ALL" = "$OPERATION" ];
   then
     run "STOP_LOAD"
